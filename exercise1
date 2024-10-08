@@ -1,0 +1,75 @@
+#Importez le module math
+import math
+
+# Creer la fonction pour ecrire notre nombre de somme de puissances
+def facteur_de_10():
+    # Convertir le nombre en string et obtenir sa longueur
+    str_numero = str(numero)
+    len_numero = len(str_numero)
+    # Creer notre variable pour le resultat
+    resultat = f"{numero} = "
+
+    # Boucle pour trouver chacun de nos nombres et puissance
+    for i in range(0, len_numero):
+        chiffre = str_numero[i]
+        puissance = len_numero - i - 1
+
+        # Si notre chiffre est egal a zero, ne pas l'ecrire
+        if int(chiffre) == 0:
+            continue
+
+        # Si la puissance est egal a zero, ne pas l'ecrire (juste ecrire le chiffre +...)
+        if int(puissance) == 0:
+            resultat += chiffre
+            resultat += " + "
+            continue
+
+        # Ajouter notre chiffre, notre puissance de 10 et un + a notre variable resultat
+        resultat += f"{chiffre}*10**{puissance} + "
+
+    # Enlever le dernier + de notre variable resultat
+    if resultat[-3:] == " + ":
+        resultat = resultat[:-3]
+
+    # Retourner notre resultat
+    return resultat
+
+
+# Creer la fonction pour calculer notre total en factoriel
+def factoriel():
+    # Convertir le nombre en une chaîne de caractere et creer une lsite vide
+    str_numero = str(abs(numero))
+    liste_factoriels = []
+
+    # Boucle pour trouver chacun de nos nombres en factoriel et les ajouter a une liste
+    for i in str_numero:
+        factoriel = math.factorial(int(i))
+        liste_factoriels.append(factoriel)
+
+    # Faire la somme de la liste des nombres en factoriel
+    somme_factoriels = sum(liste_factoriels)
+
+    # Imprimez ce resultat
+    print(f"\nLa somme des factoriels des chiffres de {numero} est: {somme_factoriels}")
+
+
+# Boucle pour executer le script principal
+while True:
+    # Recuperez la valeur que l'utilisateur et la convertir en int
+    numero = input(f"\nEntrez un nombre positif (0 pour arrêter) : ")
+    numero = int(numero)
+
+    # Si la valeur saisi est egal a 0 arreter la boucle
+    if numero == 0:
+        break
+
+    # Si la valeur saisi est inferieur a 0 recommencer en disant a l'utilisateur de saisir des nombres positif
+    elif numero < 0:
+        print(f"Veuillez rentrez seulement des nombres positifs\n")
+        print("-" * 50)
+        continue
+
+    # Imprimez la valeur que nous rend les fonctions ci-haut selon le nombre que l'utilisateur a rentrer
+    print(facteur_de_10())
+    factoriel()
+    print ("-"*50)
